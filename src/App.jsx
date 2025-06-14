@@ -18,7 +18,7 @@ const App = () => {
   const generateBotResponse = async (history) => {
     const updateHistory = (text, isError = false) => {
       setChatHistory((prev) => [
-        ...prev.filter((msg) => msg.text !== "Copiando..."),
+        ...prev.filter((msg) => msg.text !== "Carregando..."),
         {
           role: "model",
           text,
@@ -58,12 +58,17 @@ const App = () => {
   };
 
   const handleQuickReply = (text) => {
-    setChatHistory((prev) => [...prev, { role: "user", text }]);
-    setTimeout(() => {
-      setChatHistory((prev) => [...prev, { role: "model", text: "Carregando..." }]);
-    }, 600);
-    generateBotResponse([...chatHistory, { role: "user", text }]);
+    setChatHistory((prev) => {
+      const updatedHistory = [
+        ...prev,
+        { role: "user", text },
+        { role: "model", text: "Carregando..." }
+      ];
+      generateBotResponse(updatedHistory); 
+      return updatedHistory;
+    });
   };
+
 
   useEffect(() => {
     if (chatBodyRef.current) {
