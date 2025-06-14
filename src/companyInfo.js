@@ -1,5 +1,5 @@
 export const companyInfo = `
-Bem-vindo à Apifiz!
+Bem-vindo à IdeaFix!
 
 Somos uma loja especializada na aplicação de películas e adesivos personalizados. Trabalhamos com:
 
