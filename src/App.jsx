@@ -8,7 +8,7 @@ const App = () => {
   const [chatHistory, setChatHistory] = useState([
     {
       role: "model",
-      text: "👋 Olá! Bem-vindo(a) à *Apifiz*! Somos especialistas em *películas, adesivos e comunicação visual*. Como posso te ajudar hoje?",
+      text: "Olá!👋 Eu sou o chatbot da *IdeaFix*. Estou aqui para te ajudar! Somos especialistas em *películas, adesivos e comunicação visual*. Como posso te ajudar hoje?",
     },
   ]);
 
@@ -60,7 +60,7 @@ const App = () => {
   const handleQuickReply = (text) => {
     setChatHistory((prev) => [...prev, { role: "user", text }]);
     setTimeout(() => {
-      setChatHistory((prev) => [...prev, { role: "model", text: "Copiando..." }]);
+      setChatHistory((prev) => [...prev, { role: "model", text: "Carregando..." }]);
     }, 600);
     generateBotResponse([...chatHistory, { role: "user", text }]);
   };
@@ -81,18 +81,22 @@ const App = () => {
       </button>
 
       <div className="chatbot-popup">
+
         {/* Cabeçalho */}
         <div className="header-info">
-          <ChatbotIcon />
-          <h2 className="logo-text">Apifiz</h2>
+          <div className="header-left">
+            <ChatbotIcon />
+            <h2 className="logo-text">FixBot</h2>
+          </div>
+          <button
+            onClick={() => setShowChatbot(false)}
+            className="close-chatbot-button"
+            aria-label="Fechar"
+          >
+            ✕
+          </button>
         </div>
-        <button
-          onClick={() => setShowChatbot(false)}
-          className="material-symbols-rounded"
-          style={{ alignSelf: "flex-end", marginRight: "10px", marginTop: "-10px" }}
-        >
-          keyboard_arrow_down
-        </button>
+
 
         {/* Corpo do Chat */}
         <div className="chat-body" ref={chatBodyRef}>

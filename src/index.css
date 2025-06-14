@@ -36,11 +36,20 @@
   display: inline;
 }
 
+.container.show-chatbot .notification-badge {
+  display: none;
+}
+
+.container.show-chatbot #chatbot-toggler {
+  display: none;
+}
+
+
 /* Pop-up do chatbot */
 .chatbot-popup {
   width: 350px;
   max-height: 550px;
-  background: #f8f7fc;
+  background: #ffffff;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   overflow: hidden;
@@ -54,12 +63,51 @@
 
 /* Cabeçalho */
 .header-info {
-  background-color: #7b61ff;
-  color: white;
-  padding: 16px;
+  background-color: #ffffff;
+  color: #333;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.header-left {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.header-info .chatbot-icon-wrapper {
+  width: 36px;
+  height: 36px;
+}
+
+.header-info .chatbot-logo {
+  width: 18px;
+  height: 18px;
+}
+
+.header-info .notification-badge { 
+  display: none;
+}
+
+.close-chatbot-button {
+  background-color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px; 
+  font-size: 18px;
+  color: #333;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.close-chatbot-button:hover {
+  transform: scale(1.2);
+  color: red;
 }
 
 .logo-text {
@@ -74,6 +122,7 @@
   padding: 16px;
   overflow-y: auto;
   background-color: white;
+  
 }
 
 .message {
@@ -91,17 +140,37 @@
   justify-content: flex-start;
 }
 
+.bot-message .message-text {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f6f6f6;
+  color: #333;
+  font-weight: 600;
+  border-radius: 18px;
+  padding: 14px;
+  font-size: 15px;
+  line-height: 1.4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.bot-message .message-text strong {
+  font-weight: bold;
+}
+
 .message-text {
-  background-color: #ececec;
-  padding: 10px 14px;
-  border-radius: 16px;
-  max-width: 75%;
-  word-wrap: break-word;
+  background-color: #f1f1f1;
+  padding: 12px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
 .user-message .message-text {
-  background-color: #d1c4ff;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  background-color: #fdef9d;
+  color: #333;
 }
+
 
 /* Rodapé do chat */
 .chat-footer {
@@ -126,13 +195,14 @@
 }
 
 .chat-form button {
-  background-color: #7b61ff;
-  color: white;
+  background-color: #ffe600;
+  color: black;
   border: none;
   padding: 10px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 /* ChatbotIcon - Apifiz logo com badge */
@@ -165,3 +235,46 @@
   border-radius: 50%;
   box-shadow: 0 0 0 2px white;
 }
+
+.quick-replies {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.quick-replies button {
+  background-color: #ffe600;
+  color: #333;
+  font-weight: bold;
+  width: 80%;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 18px;
+  font-size: 15px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.quick-replies button:hover {
+  background-color: #ffeb3b;
+}
+
+
+@media (max-width: 400px) {
+  .chatbot-popup {
+    width: 90vw;
+    max-height: 80vh;
+    border-radius: 12px;
+  }
+
+  .message-text {
+    max-width: 85%;
+  }
+}
+
